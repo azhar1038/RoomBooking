@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.learn.az.roombooking.ui.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginFragment">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="112dp"
+            android:layout_height="111dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/company_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/meeting_room"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/login"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_image"
+            app:layout_constraintTop_toTopOf="@+id/logo_image" />
+
+        <TextView
+            android:id="@+id/user_text"
+            style="@style/form_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:labelFor="@+id/user_edit"
+            android:text="@string/user_colon"
+            app:layout_constraintEnd_toEndOf="@+id/logo_image"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/logo_image"
+            app:layout_constraintTop_toBottomOf="@+id/logo_image" />
+
+        <EditText
+            android:id="@+id/user_edit"
+            android:text="@={viewModel.userName}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/user_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_text"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/user_error_text"
+            style="@style/error_style"
+            android:text="@{viewModel.userNameError}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/user_edit"
+            app:layout_constraintStart_toStartOf="@+id/user_edit"
+            app:layout_constraintTop_toBottomOf="@+id/user_edit"
+            tools:text="some error" />
+
+        <TextView
+            android:id="@+id/password_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/password_edit"
+            android:text="@string/password_colon"
+            android:textAppearance="@style/form_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/password_edit"
+            app:layout_constraintEnd_toEndOf="@+id/user_text"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/user_text" />
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:text="@={viewModel.password}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/password_text"
+            app:layout_constraintTop_toBottomOf="@+id/user_error_text" />
+
+        <TextView
+            android:id="@+id/password_error_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.passwordError}"
+            android:textAppearance="@style/error_style"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="@+id/password_edit"
+            app:layout_constraintStart_toStartOf="@+id/password_edit"
+            app:layout_constraintTop_toBottomOf="@+id/password_edit"
+            tools:text="some error" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/login"
+            android:textColor="@color/blue_700"
+            android:textStyle="bold"
+            android:onClick="@{ () -> viewModel.formValidate() }"
+            app:cornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_error_text" />
+
+        <TextView
+            android:id="@+id/details_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_details"
+            android:textAlignment="center"
+            android:textColor="@color/blue_700"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

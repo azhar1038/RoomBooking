@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.learn.az.roombooking.ui.add.AddRoomViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.add.AddRoomFragment">
+            <TextView
+                android:id="@+id/add_room_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/add_room"
+                android:textAppearance="@style/form_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/building_text"
+                style="@style/add_room_form_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:labelFor="@id/building_edit"
+                android:text="@string/building_compulsory"
+                app:layout_constraintBaseline_toBaselineOf="@+id/building_edit"
+                app:layout_constraintEnd_toStartOf="@+id/building_edit"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/building_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="40dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.building}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_room_text" />
+
+            <TextView
+                android:id="@+id/building_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/error_style"
+                android:text="@{viewModel.buildingError}"
+                app:layout_constraintEnd_toEndOf="@+id/building_edit"
+                app:layout_constraintStart_toStartOf="@+id/building_edit"
+                app:layout_constraintTop_toBottomOf="@+id/building_edit"
+                tools:text="some error" />
+
+            <TextView
+                android:id="@+id/floor_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/floor_compulsory"
+                android:textAppearance="@style/add_room_form_style"
+                android:labelFor="@id/floor_edit"
+                app:layout_constraintBaseline_toBaselineOf="@+id/floor_edit"
+                app:layout_constraintEnd_toStartOf="@+id/floor_edit"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/floor_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="textShortMessage|text"
+                android:text="@={viewModel.floor}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/building_error_text" />
+
+            <TextView
+                android:id="@+id/floor_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/error_style"
+                android:text="@{viewModel.floorError}"
+                app:layout_constraintEnd_toEndOf="@+id/floor_edit"
+                app:layout_constraintStart_toStartOf="@+id/floor_edit"
+                app:layout_constraintTop_toBottomOf="@+id/floor_edit"
+                tools:text="some error" />
+
+            <TextView
+                android:id="@+id/room_name_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:labelFor="@id/room_name_edit"
+                android:text="@string/room_name_compulsory"
+                android:textAppearance="@style/add_room_form_style"
+                app:layout_constraintBaseline_toBaselineOf="@+id/room_name_edit"
+                app:layout_constraintEnd_toStartOf="@+id/room_name_edit"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/room_name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="text"
+                android:text="@={viewModel.roomName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/floor_error_text" />
+
+            <TextView
+                android:id="@+id/room_name_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/error_style"
+                android:text="@{viewModel.roomNameError}"
+                app:layout_constraintEnd_toEndOf="@+id/room_name_edit"
+                app:layout_constraintStart_toStartOf="@+id/room_name_edit"
+                app:layout_constraintTop_toBottomOf="@+id/room_name_edit"
+                tools:text="some error" />
+
+            <TextView
+                android:id="@+id/capacity_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:labelFor="@id/capacity_edit"
+                android:text="@string/capacity_compulsory"
+                android:textAppearance="@style/add_room_form_style"
+                app:layout_constraintBaseline_toBaselineOf="@+id/capacity_edit"
+                app:layout_constraintEnd_toStartOf="@+id/capacity_edit"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/capacity_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="numberSigned"
+                android:text="@={viewModel.capacity}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_name_error_text" />
+
+            <TextView
+                android:id="@+id/capacity_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/error_style"
+                android:text="@{viewModel.capacityError}"
+                app:layout_constraintEnd_toEndOf="@+id/capacity_edit"
+                app:layout_constraintStart_toStartOf="@+id/capacity_edit"
+                app:layout_constraintTop_toBottomOf="@+id/capacity_edit"
+                tools:text="some error" />
+
+            <TextView
+                android:id="@+id/facilities_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/facilities_provided"
+                android:textAppearance="@style/add_room_form_style"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/capacity_error_text" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/network_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/network"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.network}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/facilities_text" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/conf_phone_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/conf_phone"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.confPhone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/network_switch" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/projector_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/projector"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.projector}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/conf_phone_switch" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/internet_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/internet"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.internet}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/projector_switch" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/video_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/video"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.video}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/internet_switch" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/ac_switch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/ac"
+                android:textAppearance="@style/add_room_form_style"
+                android:checked="@={viewModel.ac}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/video_switch" />
+
+            <Button
+                android:id="@+id/add_room_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/add_room"
+                android:onClick="@{ () -> viewModel.addRoom() }"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ac_switch" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+</layout>

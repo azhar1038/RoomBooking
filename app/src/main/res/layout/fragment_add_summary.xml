@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="room"
+            type="com.learn.az.roombooking.database.MeetingRoom" />
+
+        <variable
+            name="viewModel"
+            type="com.learn.az.roombooking.ui.addSummary.AddSummaryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/form_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/add_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:stretchColumns="*"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/room_id_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/room_id" />
+
+                <TextView
+                    android:id="@+id/room_id_body_text"
+                    style="@style/summary_style"
+                    android:text="@{String.valueOf(room.roomId)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/building_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/building" />
+
+                <TextView
+                    android:id="@+id/building_body_text"
+                    style="@style/summary_style"
+                    android:text="@{room.building}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/floor_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/floor" />
+
+                <TextView
+                    android:id="@+id/floor_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(room.floor)}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/room_name_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/room_name" />
+
+                <TextView
+                    android:id="@+id/room_name_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.roomName}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/capacity_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/capacity" />
+
+                <TextView
+                    android:id="@+id/capacity_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(room.capacity)}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/features_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/facilities_provided"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/network_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/network" />
+
+                <TextView
+                    android:id="@+id/network_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.network==1?`Yes`:`No`}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/conf_phone_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/conf_phone" />
+
+                <TextView
+                    android:id="@+id/conf_phone_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.confPhone==1?`Yes`:`No`}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/projector_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/projector" />
+
+                <TextView
+                    android:id="@+id/projector_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.projector==1?`Yes`:`No`}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/internet_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/internet" />
+
+                <TextView
+                    android:id="@+id/internet_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.internet==1?`Yes`:`No`}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/video_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/video" />
+
+                <TextView
+                    android:id="@+id/video_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.video==1?`Yes`:`No`}"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ac_header_text"
+                    style="@style/summary_style"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/ac" />
+
+                <TextView
+                    android:id="@+id/ac_body_text"
+                    style="@style/summary_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{room.ac==1?`Yes`:`No`}"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/home"
+            android:onClick="@{ () -> viewModel.navigateToDashboard() }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

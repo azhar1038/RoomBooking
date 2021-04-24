@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.learn.az.roombooking.ui.search.SearchRoomViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.search.SearchRoomFragment">
+
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/form_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/search_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/room_id"
+            app:layout_constraintBaseline_toBaselineOf="@+id/search_room_id_edit"
+            app:layout_constraintEnd_toStartOf="@+id/search_room_id_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            android:labelFor="@+id/search_room_id_edit"
+            style="@style/form_label"/>
+
+        <EditText
+            android:id="@+id/search_room_id_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={viewModel.roomId}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/error_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{viewModel.roomIdError}"
+            app:layout_constraintEnd_toEndOf="@+id/search_room_id_edit"
+            app:layout_constraintStart_toStartOf="@+id/search_room_id_edit"
+            app:layout_constraintTop_toBottomOf="@+id/search_room_id_edit"
+            tools:text="some error" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@android:string/search_go"
+            android:onClick="@{()->viewModel.search()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.room!=null?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2">
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:stretchColumns="*"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/room_id_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/room_id" />
+
+                    <TextView
+                        android:id="@+id/room_id_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.room.roomId)}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/building_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/building" />
+
+                    <TextView
+                        android:id="@+id/building_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.building}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/floor_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/floor" />
+
+                    <TextView
+                        android:id="@+id/floor_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.room.floor)}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/room_name_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/room_name" />
+
+                    <TextView
+                        android:id="@+id/room_name_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.roomName}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/capacity_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/capacity" />
+
+                    <TextView
+                        android:id="@+id/capacity_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.room.capacity)}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/features_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/facilities_provided"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/network_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/network" />
+
+                    <TextView
+                        android:id="@+id/network_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.network==1?`Yes`:`No`}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/conf_phone_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/conf_phone" />
+
+                    <TextView
+                        android:id="@+id/conf_phone_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.confPhone==1?`Yes`:`No`}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/projector_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/projector" />
+
+                    <TextView
+                        android:id="@+id/projector_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.projector==1?`Yes`:`No`}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/internet_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/internet" />
+
+                    <TextView
+                        android:id="@+id/internet_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.internet==1?`Yes`:`No`}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/video_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/video" />
+
+                    <TextView
+                        android:id="@+id/video_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.video==1?`Yes`:`No`}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ac_header_text"
+                        style="@style/summary_style"
+                        android:layout_width="28dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/ac" />
+
+                    <TextView
+                        android:id="@+id/ac_body_text"
+                        style="@style/summary_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.room.ac==1?`Yes`:`No`}" />
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:visibility="@{viewModel.room!=null?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/delete"
+            android:onClick="@{()->viewModel.delete()}"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
