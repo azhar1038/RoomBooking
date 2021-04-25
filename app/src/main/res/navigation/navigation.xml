@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in"
             app:launchSingleTop="true"
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
@@ -24,16 +25,23 @@
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_addRoomFragment"
-            app:destination="@id/addRoomFragment" />
+            app:destination="@id/addRoomFragment"
+            app:enterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_dashboardFragment_to_searchRoomFragment"
-            app:destination="@id/searchRoomFragment" />
+            app:destination="@id/searchRoomFragment"
+            app:enterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_dashboardFragment_to_listRoomFragment"
-            app:destination="@id/listRoomFragment" />
+            app:destination="@id/listRoomFragment"
+            app:enterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_dashboardFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:exitAnim="@anim/slide_out"
             app:launchSingleTop="true"
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
@@ -46,6 +54,8 @@
         <action
             android:id="@+id/action_addRoomFragment_to_addSummaryFragment"
             app:destination="@id/addSummaryFragment"
+            app:enterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/addRoomFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -70,6 +80,7 @@
         <action
             android:id="@+id/action_addSummaryFragment_to_addRoomFragment"
             app:destination="@id/addRoomFragment"
+            app:exitAnim="@anim/slide_out"
             app:popUpTo="@id/addRoomFragment"
             app:popUpToInclusive="true" />
     </fragment>
